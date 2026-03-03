@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="">
 
 <head>
     <meta charset="UTF-8">
@@ -23,10 +23,148 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
+    <!-- External CSS File  -->
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
 
+    <!-- Navbar  -->
+    <header class="bg-base-100 shadow-sm">
+        <div class="navbar w-11/12 mx-auto">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul tabindex="-1"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2">
+                        <a href="" class="btn btn-outline btn-primary">
+                            <i class="fa-solid fa-circle-question"></i> FAQ
+                        </a>
+                        <a href="" class="btn btn-outline btn-primary">
+                            <i class="fa-solid fa-book-open"></i> Learn
+                        </a>
+                        <a href="" class="btn btn-outline btn-primary">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                        </a>
+
+                    </ul>
+                </div>
+                <div class="flex items-center justify-center">
+                    <p class="font-bold text-[20px]">English </p>
+                    <img src="./assets/logo.png" alt="logo">
+                    <span class="font-semibold text-[20px] font-bangla">জানালা</span>
+                </div>
+            </div>
+            <div class="navbar-end hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 space-x-2">
+                    <a href="" class="btn btn-outline btn-primary">
+                        <i class="fa-solid fa-circle-question"></i> FAQ
+                    </a>
+                    <a href="" class="btn btn-outline btn-primary">
+                        <i class="fa-solid fa-book-open"></i> Learn
+                    </a>
+                    <a href="" class="btn btn-outline btn-primary">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- hero section  -->
+    <section
+        class="w-11/12  mx-auto flex flex-col-reverse md:flex-row text-center md:text-start items-center justify-between gap-10 py-5">
+        <div class="hero-des space-y-3 flex-1 ">
+            <h1 class="text-sky-400 font-bold text-4xl">English <span class="text-neutral "> is Easy</span></h1>
+            <p class="font-bangla text-[24px] font-medium">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন
+                অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের
+                Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+
+            <div class="space-y-3">
+                <input type="text" class="input" placeholder="Enter Your Name" /> <br>
+                <input type="text" class="input" placeholder="********" /> <br>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+        <div class="hero-img flex-1">
+            <img src="./assets/hero-student.png" alt="hero student img">
+        </div>
+    </section>
+
+
+
+    <!-- lesson level  -->
+    <section class="w-11/12 mx-auto text-center mt-10">
+        <h1 class="text-sky-400 font-bold text-5xl">Let's<span class="text-neutral "> Learn Vocabularies</span></h1>
+
+        <div id="lessonContainer" class="flex flex-wrap justify-center gap-2 my-6">
+
+        </div>
+
+        <div id="getLessonData"
+            class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-base-200 py-15 px-5 rounded-xl mb-12">
+
+
+            <!-- default text  -->
+            <div class="col-span-full text-center space-y-3">
+                <p class="text-[14px] text-gray-400 font-bangla">আপনি এখনো কোন Lesson Select করেন নি</p>
+                <p class="font-bangla font-medium text-2xl">একটি Lesson Select করুন।</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- frequently asked question  -->
+    <section class="w-11/12 mx-auto  mt-20 mb-20 space-y-2">
+        <h1 class="text-sky-400 font-bold text-center text-5xl mb-10">Frequently<span class="text-neutral "> Asked
+                Questions</span></h1>
+
+        <div class="collapse collapse-plus bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-medium">1. How can I start learning English on this website?</div>
+            <div class="collapse-content text-sm">You can start by exploring our beginner lessons, interactive
+                exercises, and quizzes. We also offer structured courses to guide you step by step.</div>
+        </div>
+        <div class="collapse collapse-plus bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">2. Is this website free to use?</div>
+            <div class="collapse-content text-sm">Click on "Forgot Password" on the login page and follow the
+                instructions sent to your email.</div>
+        </div>
+        <div class="collapse collapse-plus bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">3. Do I need to create an account?</div>
+            <div class="collapse-content text-sm">Go to "My Account" settings and select "Edit Profile" to make changes.
+            </div>
+        </div>
+        <div class="collapse collapse-plus bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">4. How can I build my English vocabulary?</div>
+            <div class="collapse-content text-sm">Go to "My Account" settings and select "Edit Profile" to make changes.
+            </div>
+        </div>
+        <div class="collapse collapse-plus bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">5. Do you offer certificates for completed courses?</div>
+            <div class="collapse-content text-sm">Go to "My Account" settings and select "Edit Profile" to make changes.
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <script src="js/script.js"></script>
 </body>
 
 </html>
