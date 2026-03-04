@@ -1,9 +1,24 @@
+const createElement = (arr) => {
+  let el = arr.map((syn) => `<span class="btn bg-[#EDF7FF]">${syn}</span>`);
+  return el.join(" ");
+};
+
 const fetchLesson = () => {
   fetch("https://openapi.programming-hero.com/api/levels/all")
     .then((res) => res.json())
     .then((data) => displayLesson(data.data));
 };
 fetchLesson();
+
+const loadSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("loadSpinner").classList.remove("hidden");
+    document.getElementById("getLessonData").classList.add("hidden");
+  } else {
+    document.getElementById("getLessonData").classList.remove("hidden");
+    document.getElementById("loadSpinner").classList.add("hidden");
+  }
+};
 
 const displayLesson = (lessons) => {
   let lessonContainer = document.getElementById("lessonContainer");
@@ -25,6 +40,7 @@ const removeActiveClass = () => {
 };
 
 const getLessonData = (id) => {
+  loadSpinner(true);
   fetch(`https://openapi.programming-hero.com/api/level/${id}`)
     .then((res) => res.json())
     .then((data) => {
@@ -60,12 +76,10 @@ const displayDetails = (word) => {
                 <p class="font-semibold mt-6">Example</p>
                 <p class=""> ${word.sentence}</p>
 
-                <p class="font-bangla font-semibold">সমার্থক শব্দগুলো</p>
+                <p class="font-bangla font-semibold mt-6">সমার্থক শব্দগুলো</p>
 
                 <div>
-                    <span class="btn bg-[#EDF7FF]">${word.synonyms[0]}</span>
-                    <span class="btn bg-[#EDF7FF]">${word.synonyms[1]}</span>
-                    <span class="btn bg-[#EDF7FF]">${word.synonyms[2]}</span>
+                    ${createElement(word.synonyms)}
                 </div>
             </div>
 
@@ -88,6 +102,7 @@ const displayLessonData = (words) => {
             <p class="font-bangla font-medium text-2xl">নেক্সট Lesson এ যান</p>
         </div>
     `;
+    loadSpinner(false);
     return;
   }
   words.forEach((word) => {
@@ -105,4 +120,24 @@ const displayLessonData = (words) => {
     `;
     getLessonData.appendChild(lessonDataContent);
   });
+
+  loadSpinner(false);
 };
+
+document.getElementById("searchBtn").addEventListener("click", () => {
+  removeActiveClass();
+  
+  const input = document.getElementById("inputSearch");
+  const inputValue = input.value.trim().toLowerCase();
+
+  fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((res) => res.json())
+    .then((data) => {
+      const allWords = data.data;
+
+      const searchWord = allWords.filter((word) =>
+        word.word.toLowerCase().includes(inputValue),
+      );
+      displayLessonData(searchWord);
+    });
+});

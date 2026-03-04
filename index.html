@@ -109,6 +109,15 @@
 
         </div>
 
+        <div class="join mb-5">
+            <div>
+                <label class="input validator join-item">
+                    <input id="inputSearch" type="text" placeholder="Search" />
+                </label>
+            </div>
+            <button id="searchBtn" class="btn btn-primary join-item">Search</button>
+        </div>
+
         <div id="getLessonData"
             class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-base-200 py-15 px-5 rounded-xl mb-12">
 
@@ -120,6 +129,11 @@
             </div>
         </div>
 
+
+        <!-- loading spinner  -->
+        <section>
+            <span id="loadSpinner" class="loading loading-dots loading-xl hidden"></span>
+        </section>
 
         <!-- modal for show each word details  -->
         <dialog id="my_modal" class="modal modal-middle  px-5">
@@ -225,7 +239,7 @@
                     <img src="./assets/instagram-thumb.png" alt="">
                     <img src="./assets/youtube-thumb.png" alt="">
                 </div>
-            </div> 
+            </div>
         </div>
 
     </footer>
