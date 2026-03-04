@@ -35,6 +35,47 @@ const getLessonData = (id) => {
     });
 };
 
+const loadWordDetails = async (id) => {
+  let url = `https://openapi.programming-hero.com/api/word/${id}`;
+
+  const res = await fetch(url);
+  const details = await res.json();
+  displayDetails(details.data);
+};
+
+const displayDetails = (word) => {
+  let detailsContainer = document.getElementById("detailsContainer");
+  detailsContainer.innerHTML = `
+    <div class="text-left ">
+            <div class="p-5 border border-sky-200 rounded-md mb-3 space-y-2">
+                <h1 class="font-bold text-2xl font-bangla"> ${word.word} (<i class="fa-solid fa-microphone-lines"></i> : ${word.pronunciation})
+                </h1>
+
+                <p class="font-semibold mt-6">Meaning</p>
+                <p class="font-bangla"> ${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"} </p>
+
+                <p class="font-semibold mt-6">Parts of Speech</p>
+                <p class=""> ${word.partsOfSpeech}</p>
+
+                <p class="font-semibold mt-6">Example</p>
+                <p class=""> ${word.sentence}</p>
+
+                <p class="font-bangla font-semibold">সমার্থক শব্দগুলো</p>
+
+                <div>
+                    <span class="btn bg-[#EDF7FF]">${word.synonyms[0]}</span>
+                    <span class="btn bg-[#EDF7FF]">${word.synonyms[1]}</span>
+                    <span class="btn bg-[#EDF7FF]">${word.synonyms[2]}</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary rounded-lg">Complete Learning</button>
+        </div>
+  `;
+
+  let showModal = document.getElementById("my_modal").showModal();
+};
+
 const displayLessonData = (words) => {
   let getLessonData = document.getElementById("getLessonData");
   getLessonData.innerHTML = "";
@@ -57,7 +98,7 @@ const displayLessonData = (words) => {
                 <p class="font-medium text-[20px]"> Meaning / Pronounciation</p>
                 <p class="font-bangla font-semibold text-2xl ">"${word.meaning ? word.meaning : "অর্থপাওয়া যায়নি"} / ${word.pronunciation ? word.pronunciation : "উচ্চারণ পাওয়া যায়নি"}"</p>
                 <div class="flex justify-between">
-                    <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF70]"><i class="fa-solid fa-circle-info"></i></button>
+                    <button onclick="loadWordDetails(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF70]"><i class="fa-solid fa-circle-info"></i></button>
                     <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF70]"><i class="fa-solid fa-volume-high"></i></button>
                 </div>
         </div>
