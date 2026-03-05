@@ -1,3 +1,9 @@
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; 
+  window.speechSynthesis.speak(utterance);
+}
+
 const createElement = (arr) => {
   let el = arr.map((syn) => `<span class="btn bg-[#EDF7FF]">${syn}</span>`);
   return el.join(" ");
@@ -28,7 +34,7 @@ const displayLesson = (lessons) => {
     let lessonContent = document.createElement("div");
 
     lessonContent.innerHTML = `
-            <button id="lessonBtn-${lesson.level_no}" onclick= 'getLessonData(${lesson.level_no})' class="btn btn-outline btn-primary font-semibold lessonBtn"><i class="fa-solid fa-book-open"></i> Lesson - ${lesson.level_no} </button>
+            <button id="lessonBtn-${lesson.level_no}" onclick= 'getLessonData(${lesson.level_no})' class="btn btn-outline btn-info hover:text-white font-semibold lessonBtn"><i class="fa-solid fa-book-open"></i> Lesson - ${lesson.level_no} </button>
         `;
     lessonContainer.appendChild(lessonContent);
   }
@@ -83,7 +89,7 @@ const displayDetails = (word) => {
                 </div>
             </div>
 
-            <button class="btn btn-primary rounded-lg">Complete Learning</button>
+            <button class="btn btn-info text-white rounded-lg">Complete Learning</button>
         </div>
   `;
 
@@ -114,7 +120,7 @@ const displayLessonData = (words) => {
                 <p class="font-bangla font-semibold text-2xl ">"${word.meaning ? word.meaning : "অর্থপাওয়া যায়নি"} / ${word.pronunciation ? word.pronunciation : "উচ্চারণ পাওয়া যায়নি"}"</p>
                 <div class="flex justify-between">
                     <button onclick="loadWordDetails(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF70]"><i class="fa-solid fa-circle-info"></i></button>
-                    <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF70]"><i class="fa-solid fa-volume-high"></i></button>
+                    <button onclick ="pronounceWord('${word.word}')"  class="btn bg-[#1A91FF10] hover:bg-[#1A91FF70]"><i class="fa-solid fa-volume-high"></i></button>
                 </div>
         </div>
     `;
@@ -126,7 +132,7 @@ const displayLessonData = (words) => {
 
 document.getElementById("searchBtn").addEventListener("click", () => {
   removeActiveClass();
-  
+
   const input = document.getElementById("inputSearch");
   const inputValue = input.value.trim().toLowerCase();
 
